@@ -4,16 +4,16 @@ local addonName, addon = ...
 -- Quest IDs and names sourced from Nery's macros
 
 addon.events = {
-	--[[{
+	{
 		name = "Cascades Calling",
 		questID = 75612,
 		coordX = 42.4,
 		coordY = 73.8,
         announce = {
-            
+            enUS = "The Primalists have begun summoning something massive in the Cascades Column!",
         },
 	},
-	{
+	--[[{
 		name = "Conspiracy of Flames",
 		questID = 75455,
 		coordX = 32.1,

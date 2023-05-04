@@ -7,6 +7,6 @@ listener:SetScript("OnEvent", function(self, event, text, monsterName)
         local mapID = C_Map.GetBestMapForUnit("player")
         if mapID ~= 2133 then return end
         
-        addon.action()
+        addon.action(text)
     end
 end)
