@@ -3,7 +3,7 @@ local addonName, addon = ...
 -- Coords and English announcements sourced from https://wowpedia.fandom.com/wiki/Zaralek_Cavern
 -- Quest IDs and names sourced from Nery's macros
 
-addon.db = {
+addon.events = {
 	--[[{
 		name = "Cascades Calling",
 		questID = 75612,

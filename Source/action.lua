@@ -1,7 +1,7 @@
 local addonName, addon = ...
 
 function addon.action()
-    for _, data in pairs(addon.db) do
+    for _, data in pairs(addon.events) do
         local announce = data.announce
         if announce and announce[GetLocale()] and (announce[GetLocale()] == text) then
             if C_Map.CanSetUserWaypointOnMap(mapID) then
