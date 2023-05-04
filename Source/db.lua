@@ -12,17 +12,15 @@ addon.events = {
         announce = {
             enUS = "The Primalists have begun summoning something massive in the Cascades Column!",
         },
-	},
-	--[[{
+	}, {
 		name = "Conspiracy of Flames",
 		questID = 75455,
 		coordX = 32.1,
 		coordY = 42.7,
         announce = {
-            
+            enUS = "Ancient djaradin chants echo from the caldera.",
         },
-	}, ]]
-    {
+	}, {
 		name = "Crystalline Survey",
 		questID = 75471,
 		coordX = 61.7,
@@ -30,8 +28,7 @@ addon.events = {
         announce = {
             enUS = "The sound of crystals ringing echoes through the cavern. The geological survey is about to begin near the Throughway!",
         },
-	},
-	{
+	}, {
 		name = "Discordant Crystals",
 		questID = 75664,
 		coordX = 57.4,
@@ -55,8 +52,7 @@ addon.events = {
         announce = {
             enUS = "A starving hydra emerges from the lava, looking for a quick meal!",
         },
-	},
-	--[[{
+	}, {
 		name = "Imperfect Balance",
 		questID = 75451,
 		coordX = 36.3,
@@ -64,7 +60,7 @@ addon.events = {
         announce = {
             enUS = "A vicious roar resonates through the caldera.",
         },
-	},]]
+	},
 	{
 		name = "Magmaclaw Matriarch",
 		questID = 75461,
