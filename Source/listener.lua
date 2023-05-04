@@ -8,5 +8,8 @@ listener:SetScript("OnEvent", function(self, event, text, monsterName)
         if mapID ~= 2133 then return end
         
         addon.action()
+        if addon.db.global.flashTaskbar then
+            FlashClientIcon()
+        end
     end
 end)

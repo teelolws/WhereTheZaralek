@@ -5,8 +5,9 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
     LibStub("LibSharedMedia-3.0"):Register("sound", "Squire Horn", 598079)
 
     local defaults = {
-        profile = {
+        global = {
             selectedSound = nil,
+            flashTaskbar = true,
         }
     }
         
@@ -20,8 +21,14 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
                 dialogControl = "LSM30_Sound",
                 name = "Sound to Play",
                 values = AceGUIWidgetLSMlists.sound,
-                get = function() return addon.db.profile.selectedSound end,
-    		    set = function(info, v) addon.db.profile.selectedSound = v end,
+                get = function() return addon.db.global.selectedSound end,
+    		    set = function(info, v) addon.db.global.selectedSound = v end,
+            },
+            flashTaskbar = {
+                type = "toggle",
+                name = "Flash Taskbar",
+                set = function(info, v) addon.db.global.flashTaskbar = v end,
+                get = function() return addon.db.global.flashTaskbar end,
             },
         },
     }
