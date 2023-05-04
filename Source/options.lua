@@ -2,8 +2,7 @@ local addonName, addon = ...
 
 EventUtil.ContinueOnAddOnLoaded(addonName, function()
 
-    local LSM = LibStub("LibSharedMedia-3.0")
-    LSM:Register("sound", "Squire Horn", 598079)
+    LibStub("LibSharedMedia-3.0"):Register("sound", "Squire Horn", 598079)
 
     local defaults = {
         profile = {

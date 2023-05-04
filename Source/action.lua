@@ -9,6 +9,8 @@ function addon.action()
                 C_Map.ClearUserWaypoint()
                 C_Map.SetUserWaypoint(point)
                 C_SuperTrack.SetSuperTrackedUserWaypoint(true)
+                
+                addon.playSound()
             end
         end
     end
