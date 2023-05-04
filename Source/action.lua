@@ -11,6 +11,10 @@ function addon.action()
                 C_SuperTrack.SetSuperTrackedUserWaypoint(true)
                 
                 addon.playSound()
+                
+                if addon.db.global.flashTaskbar then
+                    FlashClientIcon()
+                end
             end
         end
     end
