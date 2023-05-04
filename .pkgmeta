@@ -1,0 +1,8 @@
+package-as: WhereTheZaralek
+
+move-folders:
+ WhereTheZaralek/Source: WhereTheZaralek
+
+ignore:
+ - LICENCE.md
+ - README.md
