@@ -11,6 +11,7 @@ addon.events = {
 		coordY = 73.8,
         announce = {
             enUS = "The Primalists have begun summoning something massive in the Cascades Column!",
+            deDE = "",
         },
 	}, {
 		name = "Conspiracy of Flames",
@@ -19,6 +20,7 @@ addon.events = {
 		coordY = 42.7,
         announce = {
             enUS = "Ancient djaradin chants echo from the caldera.",
+            deDE = "",
         },
 	}, {
 		name = "Crystalline Survey",
@@ -27,6 +29,7 @@ addon.events = {
 		coordY = 46.4,
         announce = {
             enUS = "The sound of crystals ringing echoes through the cavern. The geological survey is about to begin near the Throughway!",
+            deDE = "",
         },
 	}, {
 		name = "Discordant Crystals",
@@ -35,6 +38,7 @@ addon.events = {
 		coordY = 65.1,
         announce = {
             enUS = "The delicate natural song of the cavern is disrupted by violent, discordant notes!",
+            deDE = "Der sanfte natürliche Gesang der Höhle wird von wilden, misstönenden Noten gestört!",
         },
 	}, {
 		name = "Glimmerfish",
@@ -59,6 +63,7 @@ addon.events = {
 		coordY = 52.2,
         announce = {
             enUS = "A vicious roar resonates through the caldera.",
+            deDE = "Ein wildes Brüllen hallt durch die Kaldera.",
         },
 	},
 	{
@@ -102,6 +107,7 @@ addon.events = {
 		coordY = 49.5,
         announce = {
             enUS = "A fire elemental approaches Olfor and Big Bessie!",
+            deDE = "Ein Feuerelementar nähert sich Olfor und der großen Bessie!",
         },
 	}, {
 		name = "Smellincense",
@@ -110,6 +116,7 @@ addon.events = {
 		coordY = 55.5,
         announce = {
             enUS = "Delvert is starting to heat up his smelly pot by Deephollow Lake!",
+            deDE = "Delvert fängt an, seinen starkriechenden Topf am Tiefgrottensee zu erhitzen!",
         },
 	}, {
 		name = "Smelly Scramble",
