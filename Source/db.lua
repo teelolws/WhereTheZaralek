@@ -91,6 +91,7 @@ addon.events = {
 		coordY = 43.7,
         announce = {
             enUS = "War cries erupt from the caldera as the djaradin begin to assemble their ballistae.",
+            deDE = "Kriegsschreie ertönen in der Kaldera, während die Djaradin beginnen, ihre Ballisten aufzubauen.",
         },
 	}, {
 		name = "Seismic Ceremony",
@@ -99,6 +100,7 @@ addon.events = {
 		coordY = 47.1,
         announce = {
             enUS = "The caldera begins to rumble...",
+            deDE = "Die Erde in der Kaldera erbebt.",
         },
 	}, {
 		name = "Shellfire",
@@ -152,6 +154,7 @@ addon.events = {
 		coordY = 80.7,
         announce = {
             enUS = "A weightlifting competition is about to begin in Glimmerogg!",
+            deDE = "Die Starken versammeln sich in Glimmerogg, um ihr Können auf die Probe zu stellen.",
         },
 	},
 	{
@@ -161,6 +164,7 @@ addon.events = {
 		coordY = 65.5,
         announce = {
             enUS = "The air hums with energy as the Primalists begin summoning a storm!",
+            deDE = "Die Luft vibriert vor Energie, als die Primalisten beginnen, einen Sturm zu beschwören!",
         },
 	},
 }
