@@ -20,7 +20,7 @@ addon.events = {
 		coordY = 42.7,
         announce = {
             enUS = "Ancient djaradin chants echo from the caldera.",
-            frFR = "",
+            frFR = "D’anciens chants djaradins s’élèvent de la caldeira…",
         },
 	}, {
 		name = "Crystalline Survey",
@@ -130,7 +130,7 @@ addon.events = {
 		coordY = 57.1,
         announce = {
             enUS = "Muskmettle the Smellomancer is getting ready to brew!",
-			frFR = "Muskran l’Odoramancien se prépare à passer à l’action !",
+			frFR = "Muskran l’Odoramancien se prépare à passer à l’action !",
         },
 	},
 	{
