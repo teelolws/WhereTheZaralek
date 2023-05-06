@@ -112,7 +112,7 @@ addon.events = {
 		coordY = 49.5,
         announce = {
             enUS = "A fire elemental approaches Olfor and Big Bessie!",
-			frFR = "Un élémentaire de feu approche d’Olfor et de la grosse Bessie !",
+			frFR = "Un élémentaire de feu approche d’Olfor et de la grosse Bessie !",
         },
 	}, {
 		name = "Smellincense",
@@ -121,7 +121,7 @@ addon.events = {
 		coordY = 55.5,
         announce = {
             enUS = "Delvert is starting to heat up his smelly pot by Deephollow Lake!",
-			frFR = "Delvert commence à faire chauffer sa marmite odorante près du lac des Abysses !",
+			frFR = "Delvert commence à faire chauffer sa marmite odorante près du lac des Abysses !",
         },
 	}, {
 		name = "Smelly Scramble",
