@@ -155,7 +155,6 @@ addon.events = {
 		coordY = 80.7,
         announce = {
             enUS = "A weightlifting competition is about to begin in Glimmerogg!",
-            deDE = "Die Starken versammeln sich in Glimmerogg, um ihr Können auf die Probe zu stellen.",
         },
 	},
 	{
