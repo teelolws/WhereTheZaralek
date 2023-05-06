@@ -6,7 +6,7 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
 
     local defaults = {
         global = {
-            selectedSound = nil,
+            selectedSound = "Squire Horn",
             flashTaskbar = true,
         }
     }
