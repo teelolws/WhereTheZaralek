@@ -29,7 +29,7 @@ addon.events = {
 		coordY = 46.4,
         announce = {
             enUS = "The sound of crystals ringing echoes through the cavern. The geological survey is about to begin near the Throughway!",
-            deDE = "",
+            deDE = "Der Klang von Kristallen schallt durch die Höhle. Gleich beginnt die geologische Messung in der Nähe des Durchgangs.",
         },
 	}, {
 		name = "Discordant Crystals",
