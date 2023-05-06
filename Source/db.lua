@@ -78,7 +78,7 @@ addon.events = {
         coordY = 29.0,
         announce = {
             enUS = "A spawning swarm of magmaclaws begins to form, threatening the ecological balance of the caverns!",
-            frFR = "",
+            frFR = "Le claquement d’énormes griffes se fait entendre depuis les eaux.",
         },
     },
     --[[{
