@@ -29,7 +29,7 @@ addon.events = {
 		coordY = 46.4,
         announce = {
             enUS = "The sound of crystals ringing echoes through the cavern. The geological survey is about to begin near the Throughway!",
-            frFR = "Le bruit des cristaux résonne dans toute la caverne. L’analyse géologique va commencer près du Passage !",
+            frFR = "Le bruit des cristaux résonne dans toute la caverne. L’analyse géologique va commencer près du Passage !",
         },
 	}, {
 		name = "Discordant Crystals",
