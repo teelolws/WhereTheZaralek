@@ -11,6 +11,7 @@ addon.events = {
 		coordY = 73.8,
         announce = {
             enUS = "The Primalists have begun summoning something massive in the Cascades Column!",
+            deDE = "",
         },
 	}, {
 		name = "Conspiracy of Flames",
@@ -19,6 +20,7 @@ addon.events = {
 		coordY = 42.7,
         announce = {
             enUS = "Ancient djaradin chants echo from the caldera.",
+            deDE = "",
         },
 	}, {
 		name = "Crystalline Survey",
@@ -27,6 +29,7 @@ addon.events = {
 		coordY = 46.4,
         announce = {
             enUS = "The sound of crystals ringing echoes through the cavern. The geological survey is about to begin near the Throughway!",
+            deDE = "Der Klang von Kristallen schallt durch die Höhle. Gleich beginnt die geologische Messung in der Nähe des Durchgangs.",
         },
 	}, {
 		name = "Discordant Crystals",
@@ -35,6 +38,7 @@ addon.events = {
 		coordY = 65.1,
         announce = {
             enUS = "The delicate natural song of the cavern is disrupted by violent, discordant notes!",
+            deDE = "Der sanfte natürliche Gesang der Höhle wird von wilden, misstönenden Noten gestört!",
         },
 	}, {
 		name = "Glimmerfish",
@@ -59,6 +63,7 @@ addon.events = {
 		coordY = 52.2,
         announce = {
             enUS = "A vicious roar resonates through the caldera.",
+            deDE = "Ein wildes Brüllen hallt durch die Kaldera.",
         },
 	},
 	{
@@ -86,6 +91,7 @@ addon.events = {
 		coordY = 43.7,
         announce = {
             enUS = "War cries erupt from the caldera as the djaradin begin to assemble their ballistae.",
+            deDE = "Kriegsschreie ertönen in der Kaldera, während die Djaradin beginnen, ihre Ballisten aufzubauen.",
         },
 	}, {
 		name = "Seismic Ceremony",
@@ -94,6 +100,7 @@ addon.events = {
 		coordY = 47.1,
         announce = {
             enUS = "The caldera begins to rumble...",
+            deDE = "Die Erde in der Kaldera erbebt.",
         },
 	}, {
 		name = "Shellfire",
@@ -102,6 +109,7 @@ addon.events = {
 		coordY = 49.5,
         announce = {
             enUS = "A fire elemental approaches Olfor and Big Bessie!",
+            deDE = "Ein Feuerelementar nähert sich Olfor und der großen Bessie!",
         },
 	}, {
 		name = "Smellincense",
@@ -110,6 +118,7 @@ addon.events = {
 		coordY = 55.5,
         announce = {
             enUS = "Delvert is starting to heat up his smelly pot by Deephollow Lake!",
+            deDE = "Delvert fängt an, seinen starkriechenden Topf am Tiefgrottensee zu erhitzen!",
         },
 	}, {
 		name = "Smelly Scramble",
@@ -118,6 +127,7 @@ addon.events = {
 		coordY = 57.1,
         announce = {
             enUS = "Muskmettle the Smellomancer is getting ready to brew!",
+            deDE = "Miefeifer der Riechomant macht sich zum Brauen bereit!",
         },
 	},
 	{
@@ -154,6 +164,7 @@ addon.events = {
 		coordY = 65.5,
         announce = {
             enUS = "The air hums with energy as the Primalists begin summoning a storm!",
+            deDE = "Die Luft vibriert vor Energie, als die Primalisten beginnen, einen Sturm zu beschwören!",
         },
 	},
 }
