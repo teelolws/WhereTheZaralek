@@ -170,7 +170,7 @@ addon.events = {
 		coordY = 65.5,
         announce = {
             enUS = "The air hums with energy as the Primalists begin summoning a storm!",
-			frFR = "L’atmosphère vrombit d’énergie tandis que les Primalistes invoquent une tempête !",
+			frFR = "L’atmosphère vrombit d’énergie tandis que les Primalistes invoquent une tempête !",
         },
 	},
 }
