@@ -4,7 +4,7 @@
 ## Author: Teelo
 ## X-Curse-Project-ID: 857885
 ## IconTexture: Interface\AddOns\WhereTheZaralek\logo.blp
-## Version: 10.1-002
+## Version: 10.1-003
 ## SavedVariables: WhereTheZaralekDB
 
 libs\LibStub\LibStub.lua
