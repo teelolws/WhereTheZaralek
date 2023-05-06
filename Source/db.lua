@@ -65,7 +65,7 @@ addon.events = {
 		coordY = 52.2,
         announce = {
             enUS = "A vicious roar resonates through the caldera.",
-			frFR = "",
+			frFR = "Un rugissement féroce résonne à travers la caldeira.",
         },
 	},
 	{
@@ -103,7 +103,7 @@ addon.events = {
 		coordY = 47.1,
         announce = {
             enUS = "The caldera begins to rumble...",
-			frFR = "",
+			frFR = "La caldeira se met à trembler…",
         },
 	}, {
 		name = "Shellfire",
