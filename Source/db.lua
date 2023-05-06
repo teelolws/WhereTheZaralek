@@ -127,6 +127,7 @@ addon.events = {
 		coordY = 57.1,
         announce = {
             enUS = "Muskmettle the Smellomancer is getting ready to brew!",
+            deDE = "Miefeifer der Riechomant macht sich zum Brauen bereit!",
         },
 	},
 	{
