@@ -45,8 +45,8 @@ addon.events = {
     }, {
         name = "Glimmerfish",
         questID = 75611,
-        coordX = 43.8,
-        coordY = 69.0,
+        coordX = 45.2,
+        coordY = 84.0,
         announce = {
             enUS = "A giant fish has been spotted near Glimmerogg!",
             frFR = "",
