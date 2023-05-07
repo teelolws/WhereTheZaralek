@@ -19,7 +19,7 @@ addon.events = {
         coordX = 32.1,
         coordY = 42.7,
         announce = {
-            enUS = "Ancient djaradin chants echo from the caldera.",
+            enUS = "Ancient djaradin chants echo from the caldera...",
             frFR = "D’anciens chants djaradins s’élèvent de la caldeira…",
         },
     }, {
