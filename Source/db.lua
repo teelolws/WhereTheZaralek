@@ -27,7 +27,7 @@ addon.events = {
             frFR = "D’anciens chants djaradins s’élèvent de la caldeira…",
         },
     }, {
-        groupID = 2,
+        groupID = 3,
         name = "Crystalline Survey",
         info = "Defeat Agitated Crystallines",
         questID = 75471,
