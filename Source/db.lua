@@ -18,7 +18,7 @@ addon.events = {
     }, {
         groupID = 5,
         name = "Conspiracy of Flames",
-        info = "Defeat Mobs in the areato overload 5 Skulls",
+        info = "Defeat Mobs in the area to overload 5 Skulls",
         questID = 75455,
         coordX = 32.1,
         coordY = 42.7,
@@ -54,7 +54,7 @@ addon.events = {
     }, {
         groupID = 1,
         name = "Glimmerfish",
-        info = "Attack Fish to drop scales & then click 50 scales",
+        info = "Attack the Fish to spawn scales. Requires 50 scales",
         questID = 75611,
         coordX = 45.2,
         coordY = 84.0,
@@ -65,7 +65,7 @@ addon.events = {
     }, {
         groupID = 4,
         name = "Hungry Hungry Hydra",
-        info = "Drag Mobs to Hydras",
+        info = "Drag Mobs to the Hydras to feed them",
         questID = 75478,
         coordX = 46.8,
         coordY = 23.9,
@@ -76,7 +76,7 @@ addon.events = {
     }, {
         groupID = 5,
         name = "Imperfect Balance",
-        info = "Kill Guards & then the weakened elemental",
+        info = "Kill guards until the weakened elemental can be attacked",
         questID = 75451,
         coordX = 36.3,
         coordY = 52.2,
@@ -89,7 +89,7 @@ addon.events = {
     {
         groupID = 4,
         name = "Magmaclaw Matriarch",
-        info = "Kill Magmaclaw Queen",
+        info = "Kill the Magmaclaw Queen",
         questID = 75461,
         coordX = 48.8,
         coordY = 29.0,
@@ -124,7 +124,7 @@ addon.events = {
     }, {
         groupID = 5,
         name = "Seismic Ceremony",
-        info = "Click Runes",
+        info = "Click each Rune 3 times",
         questID = 75450,
         coordX = 34.1,
         coordY = 47.1,
@@ -136,7 +136,7 @@ addon.events = {
     }, {
         groupID = 3,
         name = "Shellfire",
-        info = "Douse the snail with Buckets of Water",
+        info = "Douse the big snail with Buckets of Water",
         questID = 75222,
         coordX = 58.1,
         coordY = 49.5,
@@ -185,7 +185,7 @@ addon.events = {
     {
         groupID = 4,
         name = "Strike the Colors",
-        info = "Click all Banners to replace them",
+        info = "Click all Banners",
         questID = 75494,
         coordX = 43.6,
         coordY = 25.0,
@@ -197,7 +197,7 @@ addon.events = {
     {
         groupID = 1,
         name = "The Champion's Challenge",
-        info = "Pick up weights",
+        info = "Pick up nearby weights",
         questID = 75624,
         coordX = 44.1,
         coordY = 80.7,
@@ -209,7 +209,7 @@ addon.events = {
     {
         groupID = 2,
         name = "Whirling Zephyr",
-        info = "Destroys Pylons with Item dropped from Primalists nearby",
+        info = "Destroys Pylons with the Hurricane Scepter, dropped from nearby Primalists",
         questID = 74352,
         coordX = 57.5,
         coordY = 65.5,
@@ -222,11 +222,11 @@ addon.events = {
 }
 
 addon.bricks = {
-    {name = "Ritual Offering #1 Eastern Area", questID = 73548, info = "In & Around the no-fly Area", coordX = 40, coordY = 50},
-    {name = "Ritual Offering #2 Northern Area", questID = 73551, info = "In & Around the no-fly Area", coordX = 32.0, coordY = 40.0},
-    {name = "Ritual Offering #3", questID = 73553, info = "In & Around the no-fly Area", coordX = 32.0, coordY = 47.0},
-    {name = "Ritual Offering #4", questID = 73552, info = "In & Around the no-fly Area", coordX = 32.0, coordY = 47.0},
-    {name = "Waterlog", questID = 75015, info = "In water", coordX = 62.1, coordY = 55.3},
+    {name = "Ritual Offering #1", questID = 73548, info = "Eastern part of Caldera", coordX = 40, coordY = 50},
+    {name = "Ritual Offering #2", questID = 73551, info = "Northern part of Caldera", coordX = 32.0, coordY = 40.0},
+    {name = "Ritual Offering #3", questID = 73553, info = "Southern part of Caldera", coordX = 31.0, coordY = 51.0},
+    {name = "Ritual Offering #4", questID = 73552, info = "Southern part of Caldera", coordX = 31.0, coordY = 51.0},
+    {name = "Waterlog Treasure", questID = 75015, info = "Chest is underwater", coordX = 62.1, coordY = 55.3},
 }
 
 addon.rares = {
