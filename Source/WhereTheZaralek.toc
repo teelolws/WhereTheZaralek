@@ -23,6 +23,7 @@ libs\LibSharedMedia-3.0\lib.xml
 libs\AceGUI-3.0-SharedMediaWidgets\AceGUI-3.0-SharedMediaWidgets\widget.xml
 libs\AceConfig-3.0\AceConfig-3.0.xml
 libs\AceSerializer-3.0\AceSerializer-3.0.xml
+libs\EditModeExpanded-1.0\EditModeExpanded-1.0.xml
 
 db.lua
 listener.lua

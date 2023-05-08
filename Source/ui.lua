@@ -1,29 +1,18 @@
 local addonName, addon = ...
 
-addon.ui = CreateFrame("EditBox", "WhereTheZaralekUI", nil, "SharedEditBoxTemplate")
+addon.ui = CreateFrame("Frame", "WhereTheZaralekUI")
 local frame = addon.ui
-frame.fontName = "GameFontHighlightSmall"
-frame.defaultFontName = "GameFontDisableSmall"
-frame.defaultText = CALENDAR_EVENT_DESCRIPTION
-frame.maxLetters = 255
 
-frame:SetSize(200,600)
-frame:SetMultiLine(true)
+frame:SetSize(200,300)
 frame:SetPoint("LEFT", nil, "LEFT")
-frame:SetAutoFocus(false)
-frame:Disable()
-frame:SetMovable(true)
-frame:EnableMouse(true)
-frame:RegisterForDrag("LeftButton")
-frame:SetScript("OnDragStart", function(self)
-    self:StartMoving()
-end)
-frame:SetScript("OnDragStop", function(self)
-    self:StopMovingOrSizing()
-end)
+
+frame.eventText = frame:CreateFontString(nil, "OVERLAY", "GameTooltipTextSmall")
+frame.eventText:SetPoint("TOPLEFT", frame, "TOPLEFT")
+frame.eventText:SetPoint("BOTTOMRIGHT", frame, "BOTTOMRIGHT", 0, -100)
+frame.eventText:SetJustifyV("TOP")
 
 function addon:UpdateEventUI(text)
-    frame:SetText(text)
+    frame.eventText:SetText(text)
     frame:Show()
 end
 
@@ -31,12 +20,19 @@ function addon:HideUI()
     frame:Hide()
 end
 
--- TODO: a second column/section with a list of rares
-function addon:UpdateRareUI(text) 
-    if not addon.db.raresEnabled then
-        -- :Hide()
+frame.rareText = frame:CreateFontString(nil, "OVERLAY", "GameTooltipTextSmall")
+frame.rareText:SetSize(150,300)
+frame.rareText:SetPoint("TOPLEFT", frame, "TOPRIGHT")
+frame.rareText:SetJustifyV("TOP")
+
+function addon:UpdateRareUI(text)
+    if addon.db.global.raresEnabled then
+        frame.rareText:SetText(text)
+    else
+        frame.rareText:Hide()
     end
 end
 
--- TODO: a third column/section with a list of bricks
-function addon:UpdateBrickUI(text) end
+function addon:UpdateBrickUI(text) 
+    frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Brick Boxes|r\n"..text)
+end
