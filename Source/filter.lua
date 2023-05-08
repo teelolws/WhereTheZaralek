@@ -13,8 +13,12 @@ local function formatName(text, completed)
     end
 end
 
+local function formatHeader(text)
+    return "|cFFFFA500"..text.."|r"
+end
+
 local function formatInfo(text)
-    return " "..text
+    return " |cFFDCDCDC"..text.."|r"
 end
 
 local function formatCoordinates(x, y)
@@ -41,10 +45,15 @@ function addon:UpdateFilters()
         if (groupID == 5) and settings.hideZoneCaldera then include = false end
         
         if include then
+            local headerAdded
             for _, event in ipairs(addon.events) do
                 if (event.groupID == groupID) then
                     local completed = C_QuestLog.IsQuestFlaggedCompleted(event.questID)
                     if (not completed) or (completed and settings.showCompleted) then
+                        if not headerAdded then
+                            headerAdded = true
+                            text = text..formatHeader(addon.headers.events[groupID]).."\n"
+                        end
                         text = text..formatName(event.name, completed)
                         if settings.showEventInfo and event.info then
                             text = text..formatInfo(event.info)

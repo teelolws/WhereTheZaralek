@@ -17,7 +17,10 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
             hideZoneLoamm = false,
             hideZoneAberrus = false,
             raresEnabled = false,
-        }
+        },
+        profile = {
+            eme = {},
+        },
     }
         
     addon.db = LibStub("AceDB-3.0"):New("WhereTheZaralekDB", defaults)
