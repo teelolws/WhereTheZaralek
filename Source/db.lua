@@ -358,3 +358,9 @@ addon.rares = {
 		questID = 75365,
 	},
 }
+
+addon.headers = {
+    events = {
+        "Glimmerogg", "Nal Ks'Kol", "Loamm", "Aberrus", "Caldera"
+    }
+}
