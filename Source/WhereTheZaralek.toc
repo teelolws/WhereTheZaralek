@@ -29,3 +29,5 @@ listener.lua
 action.lua
 options.lua
 sound.lua
+filter.lua
+ui.lua
