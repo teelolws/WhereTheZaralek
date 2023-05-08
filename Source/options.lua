@@ -93,7 +93,7 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
             raresEnabled = {
                 type = "toggle",
                 name = "Alert for Rares too",
-                set = function(info, v) addon.db.global.raresEnabled = v end,
+                set = function(info, v) addon.db.global.raresEnabled = v addon:UpdateFilters() end,
                 get = function() return addon.db.global.raresEnabled end,
             },
         },
