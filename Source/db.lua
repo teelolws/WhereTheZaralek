@@ -85,8 +85,7 @@ addon.events = {
             frFR = "Un rugissement féroce résonne à travers la caldeira.",
             deDE = "Ein wildes Brüllen hallt durch die Kaldera.",
         },
-    },
-    {
+    }, {
         groupID = 4,
         name = "Magmaclaw Matriarch",
         info = "Kill the Magmaclaw Queen",
@@ -97,8 +96,7 @@ addon.events = {
             enUS = "A spawning swarm of magmaclaws begins to form, threatening the ecological balance of the caverns!",
             frFR = "Le claquement d’énormes griffes se fait entendre depuis les eaux.",
         },
-    },
-    --[[{
+    }, {
         groupID = 2,
         name = "Monument Maintenance",
         info = "Bring statue pieces to the statue",
@@ -108,8 +106,7 @@ addon.events = {
         announce = {
             
         },
-    },]]
-    {
+    }, {
         groupID = 5,
         name = "Mortar Warfare",
         info = "Throw Frothing Lava at both ballistae",
