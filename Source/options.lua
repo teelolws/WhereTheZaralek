@@ -17,6 +17,7 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
             hideZoneLoamm = false,
             hideZoneAberrus = false,
             raresEnabled = false,
+            showBricks = true,
         },
         profile = {
             eme = {},
@@ -95,6 +96,12 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
                 name = "Alert for Rares too",
                 set = function(info, v) addon.db.global.raresEnabled = v addon:UpdateFilters() end,
                 get = function() return addon.db.global.raresEnabled end,
+            },
+            showBricks = {
+                type = "toggle",
+                name = "Show Brick Boxes",
+                set = function(info, v) addon.db.global.showBricks = v addon:UpdateFilters() end,
+                get = function() return addon.db.global.showBricks end,
             },
         },
     }

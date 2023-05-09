@@ -1,5 +1,7 @@
 local addonName, addon = ...
 
+local libEME = LibStub:GetLibrary("EditModeExpanded-1.0")
+
 addon.ui = CreateFrame("Frame", "WhereTheZaralekUI")
 local frame = addon.ui
 
@@ -13,6 +15,7 @@ frame.eventText:SetJustifyV("TOP")
 
 function addon:UpdateEventUI(text)
     frame.eventText:SetText(text)
+    if libEME:IsFrameMarkedHidden(frame) then return end
     frame:Show()
 end
 
@@ -33,6 +36,8 @@ function addon:UpdateRareUI(text)
     end
 end
 
-function addon:UpdateBrickUI(text) 
-    frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Brick Boxes|r\n"..text)
+function addon:UpdateBrickUI(text)
+    if addon.db.global.showBricks then 
+        frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Brick Boxes|r\n"..text)
+    end
 end
