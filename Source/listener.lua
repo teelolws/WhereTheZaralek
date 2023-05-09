@@ -27,6 +27,7 @@ listener:SetScript("OnEvent", function(self, event, text, monsterName)
             listener:UnregisterEvent("ADDON_LOADED")
             libEME:RegisterFrame(WhereTheZaralekUI, "Where the Zaralek?", addon.db.profile.eme)
             libEME:RegisterResizable(WhereTheZaralekUI)
+            libEME:HideByDefault(WhereTheZaralekUI)
         end
     end
 end)

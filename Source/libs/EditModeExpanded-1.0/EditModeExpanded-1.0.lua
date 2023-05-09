@@ -2,7 +2,7 @@
 -- Internal variables
 --
 
-local MAJOR, MINOR = "EditModeExpanded-1.0", 63
+local MAJOR, MINOR = "EditModeExpanded-1.0", 64
 local lib = LibStub:NewLibrary(MAJOR, MINOR)
 if not lib then return end
 
@@ -1062,12 +1062,11 @@ do
             end
             
             -- the option in the expanded frame
+            if frame.EMEdisabledByDefault then
+                db.enabled = false
+            end
             if db.enabled == nil then
-                if frame.EMEdisabledByDefault then
-                    db.enabled = false
-                else
-                    db.enabled = true
-                end
+                db.enabled = true
             end
             frame.EMECheckButtonFrame:SetChecked(db.enabled)
             
@@ -1338,5 +1337,5 @@ function lib:HideByDefault(frame)
     local db = framesDB[frame.system]
     db.enabled = false
     frame.EMEdisabledByDefault = true
-    frame.EMECheckButtonFrame:SetChecked(db.enabled)
+    frame.EMECheckButtonFrame:SetChecked(false)
 end
