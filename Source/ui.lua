@@ -40,5 +40,7 @@ function addon:UpdateBrickUI(text)
 end
 
 function addon:UpdateSnailUI(text) 
-    frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Snail Daily|r\n"..text)
+    if not addon.db.global.hideSnails then
+        frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Snail Daily|r\n"..text)
+    end
 end
