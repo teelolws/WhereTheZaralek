@@ -1,7 +1,5 @@
 local addonName, addon = ...
 
-local libEME = LibStub:GetLibrary("EditModeExpanded-1.0")
-
 addon.ui = CreateFrame("Frame", "WhereTheZaralekUI")
 local frame = addon.ui
 
@@ -15,7 +13,6 @@ frame.eventText:SetJustifyV("TOP")
 
 function addon:UpdateEventUI(text)
     frame.eventText:SetText(text)
-    if libEME:IsFrameMarkedHidden(frame) then return end
     frame:Show()
 end
 
@@ -29,6 +26,7 @@ frame.rareText:SetPoint("TOPLEFT", frame, "TOPRIGHT")
 frame.rareText:SetJustifyV("TOP")
 
 function addon:UpdateRareUI(text)
+    if text == "" then return end
     if addon.db.global.raresEnabled then
         frame.rareText:SetText(text)
     else
@@ -37,7 +35,15 @@ function addon:UpdateRareUI(text)
 end
 
 function addon:UpdateBrickUI(text)
+    if text == "" then return end
     if addon.db.global.showBricks then 
         frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Brick Boxes|r\n"..text)
+    end
+end
+
+function addon:UpdateSnailUI(text)
+    if text == "" then return end 
+    if not addon.db.global.hideSnails then
+        frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Snail Daily|r\n"..text)
     end
 end

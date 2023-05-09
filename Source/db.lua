@@ -361,3 +361,7 @@ addon.headers = {
         "Glimmerogg", "Nal Ks'Kol", "Loamm", "Aberrus", "Caldera"
     }
 }
+
+addon.snail = {
+    {name = "Daily Snail", questIDs = {74515, 74517, 74516, 74520, 74519, 74518, 74514}},
+}

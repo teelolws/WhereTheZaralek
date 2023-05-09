@@ -86,6 +86,22 @@ function addon:UpdateFilters()
     end
     
     addon:UpdateBrickUI(text)
+	
+	text = ""
+    for _, snail in ipairs(addon.snail) do
+        local completed = false
+        for _, questID in ipairs(snail.questIDs) do
+            if C_QuestLog.IsQuestFlaggedCompleted(questID) then
+                completed = true
+                break
+            end
+        end
+        if not completed then
+            text = text..formatName(snail.name, completed).."\n"
+        end
+    end
+    
+    addon:UpdateSnailUI(text)
     
     text = ""
     for _, rare in ipairs(addon.rares) do

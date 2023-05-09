@@ -16,6 +16,7 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
             hideZoneNal = false,
             hideZoneLoamm = false,
             hideZoneAberrus = false,
+			hideSnails = false,
             raresEnabled = false,
             showBricks = true,
         },
@@ -90,6 +91,12 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
                 name = "Hide Zone Aberrus",
                 set = function(info, v) addon.db.global.hideZoneAberrus = v addon:UpdateFilters() end,
                 get = function() return addon.db.global.hideZoneAberrus end,
+            },
+			hideSnails = {
+                type = "toggle",
+                name = "Hide Snail Daily Quest",
+                set = function(info, v) addon.db.global.hideSnails = v addon:UpdateFilters() end,
+                get = function() return addon.db.global.hideSnails end,
             },
             raresEnabled = {
                 type = "toggle",
