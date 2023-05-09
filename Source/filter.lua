@@ -89,11 +89,16 @@ function addon:UpdateFilters()
 	
 	text = ""
     for _, snail in ipairs(addon.snail) do
-        local completed = C_QuestLog.IsQuestFlaggedCompleted(snail.questID)
-        if (not completed) or (completed and settings.showCompleted) then
+        local completed = false
+        for _, questID in ipairs(snail.questIDs) do
+            if C_QuestLog.IsQuestFlaggedCompleted(questID) then
+                completed = true
+                break
+            end
+        end
+        if not completed then
             text = text..formatName(snail.name, completed).."\n"
         end
-		text = text.."\n"
     end
     
     addon:UpdateSnailUI(text)

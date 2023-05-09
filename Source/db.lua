@@ -363,5 +363,5 @@ addon.headers = {
 }
 
 addon.snail = {
-    {name = "Daily Snail", questID = 74515 or 74517 or 74516 or 74520 or 74519 or 74518 or 74514},
+    {name = "Daily Snail", questIDs = {74515, 74517, 74516, 74520, 74519, 74518, 74514}},
 }
