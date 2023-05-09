@@ -1,10 +1,10 @@
 ## Interface: 100100
 ## Title: Where the Zaralek?
-## Notes: In Zaralek Caverns, when a zone-wide announcement goes out about an event spawning, sets a waypoint to that event
+## Notes: Tracks the Events & Activities of the Zaralek Caverns
 ## Author: Teelo
 ## X-Curse-Project-ID: 857885
 ## IconTexture: Interface\AddOns\WhereTheZaralek\logo.blp
-## Version: 10.1-007
+## Version: 10.1-008
 ## SavedVariables: WhereTheZaralekDB
 
 libs\LibStub\LibStub.lua
