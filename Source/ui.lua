@@ -32,6 +32,7 @@ function addon:UpdateRareUI(text)
     if text == "" then return end
     if addon.db.global.raresEnabled then
         frame.rareText:SetText(text)
+        frame.rareText:Show()
     else
         frame.rareText:Hide()
     end
