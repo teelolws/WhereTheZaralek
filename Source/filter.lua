@@ -52,9 +52,11 @@ function addon:UpdateFilters()
                     if (not completed) or (completed and settings.showCompleted) then
                         if not headerAdded then
                             headerAdded = true
-                            text = text..formatHeader(addon.headers.events[groupID]).."\n"
+                            local header = addon.headers.events[GetLocale()] or addon.headers.events.enUS
+                            header = header[groupID]
+                            text = text..formatHeader(header).."\n"
                         end
-                        text = text..formatName(event.name, completed)
+                        text = text..formatName(event.name[GetLocale()] or event.name.enUS, completed)
                         if settings.showEventInfo and event.info then
                             text = text..formatInfo(event.info)
                         end
@@ -72,9 +74,10 @@ function addon:UpdateFilters()
     
     text = ""
     for _, brick in ipairs(addon.bricks) do
+        local name = brick.name[GetLocale()] or brick.name.enUS
         local completed = C_QuestLog.IsQuestFlaggedCompleted(brick.questID)
         if (not completed) or (completed and settings.showCompleted) then
-            text = text..formatName(brick.name, completed)
+            text = text..formatName(name, completed)
             if settings.showEventInfo and brick.info then
                 text = text..formatInfo(brick.info)
             end

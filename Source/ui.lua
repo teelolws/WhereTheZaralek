@@ -39,14 +39,18 @@ end
 
 function addon:UpdateBrickUI(text)
     if text == "" then return end
-    if addon.db.global.showBricks then 
-        frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Brick Boxes|r\n"..text)
+    if addon.db.global.showBricks then
+        local header = "Brick Boxes"
+        if GetLocale() == "ruRU" then
+            header = "Обменные кирпичи"
+        end 
+        frame.eventText:SetText((frame.eventText:GetText() or "").."\n|cFFFFA500"..header.."|r\n"..text)
     end
 end
 
 function addon:UpdateSnailUI(text)
     if text == "" then return end 
     if not addon.db.global.hideSnails then
-        frame.eventText:SetText(frame.eventText:GetText().."\n|cFFFFA500Snail Daily|r\n"..text)
+        frame.eventText:SetText((frame.eventText:GetText() or "").."\n|cFFFFA500Snail Daily|r\n"..text)
     end
 end
