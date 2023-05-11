@@ -132,7 +132,6 @@ addon.events = {
         groupID = 2,
         name = {
 			enUS = "Monument Maintenance",
-			ruRU = "",
 		},
         info = "Bring statue pieces to the statue",
         questID = 75705,
