@@ -100,7 +100,7 @@ function addon:UpdateFilters()
             end
         end
         if not completed then
-            text = text..formatName(snail.name, completed).."\n"
+            text = text..formatName(snail.name[GetLocale()] or snail.name.enUS, completed).."\n"
         end
     end
     

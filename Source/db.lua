@@ -132,6 +132,7 @@ addon.events = {
         groupID = 2,
         name = {
 			enUS = "Monument Maintenance",
+            ruRU = "Ремонт монумента",
 		},
         info = "Bring statue pieces to the statue",
         questID = 75705,
@@ -160,7 +161,7 @@ addon.events = {
         groupID = 5,
         name = {
 			enUS = "Seismic Ceremony",
-			ruRU = "Сейсмическяа церемония",
+			ruRU = "Сейсмическая церемония",
 		},
         info = "Click each Rune 3 times",
         questID = 75450,
@@ -225,6 +226,7 @@ addon.events = {
         groupID = 3,
         name = {
 			enUS = "Stress Express",
+            ruRU = "Стресс экспресс",
 		},
         info = "Escort the Wagon to Loamm",
         questID = 75156,
@@ -454,11 +456,17 @@ addon.headers = {
             "Glimmerogg", "Nal Ks'Kol", "Loamm", "Aberrus", "Caldera"
         },
         ruRU = {
-            "Мерцающий Огг", "Нал-Кс'Кол", "Лоамм", "Aberrus", "Кальдера",
+            "Мерцающий Огг", "Нал-Кс'Кол", "Лоамм", "Аберрус", "Кальдера",
         },
     }
 }
 
 addon.snail = {
-    {name = "Daily Snail", questIDs = {74515, 74517, 74516, 74520, 74519, 74518, 74514}},
+    {
+        name = {
+            enUS = "Daily Snail",
+            ruRU = "Дейлик улиток",
+        },
+        questIDs = {74515, 74517, 74516, 74520, 74519, 74518, 74514},
+    },
 }
