@@ -52,6 +52,6 @@ end
 function addon:UpdateSnailUI(text)
     if text == "" then return end 
     if not addon.db.global.hideSnails then
-        frame.eventText:SetText((frame.eventText:GetText() or "").."\n|cFFFFA500Snail Daily|r\n"..text)
+        frame.eventText:SetText((frame.eventText:GetText() or "").."\n"..text)
     end
 end
