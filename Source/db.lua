@@ -212,7 +212,7 @@ addon.events = {
 			ruRU = "Вонючая драка",
 		},
         info = "Fill the Cauldron",
-        questID = 75156,
+        questID = 75441,
         coordX = 57.6,
         coordY = 57.1,
         announce = {
