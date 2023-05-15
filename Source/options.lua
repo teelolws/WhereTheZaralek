@@ -18,7 +18,7 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
             hideZoneAberrus = false,
 			hideSnails = false,
             raresEnabled = false,
-            showBricks = true,
+            hideBricks = false,
         },
         profile = {
             eme = {},
@@ -104,11 +104,11 @@ EventUtil.ContinueOnAddOnLoaded(addonName, function()
                 set = function(info, v) addon.db.global.raresEnabled = v addon:UpdateFilters() end,
                 get = function() return addon.db.global.raresEnabled end,
             },
-            showBricks = {
+            hideBricks = {
                 type = "toggle",
-                name = "Show Brick Boxes",
-                set = function(info, v) addon.db.global.showBricks = v addon:UpdateFilters() end,
-                get = function() return addon.db.global.showBricks end,
+                name = "Hide Brick Boxes",
+                set = function(info, v) addon.db.global.hideBricks = v addon:UpdateFilters() end,
+                get = function() return addon.db.global.hideBricks end,
             },
         },
     }
