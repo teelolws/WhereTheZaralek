@@ -40,7 +40,7 @@ end
 
 function addon:UpdateBrickUI(text)
     if text == "" then return end
-    if addon.db.global.showBricks then
+    if not addon.db.global.hideBricks then
         local header = "Brick Boxes"
         if GetLocale() == "ruRU" then
             header = "Обменные кирпичи"
