@@ -2,7 +2,7 @@
 -- Internal variables
 --
 
-local MAJOR, MINOR = "EditModeExpanded-1.0", 64
+local MAJOR, MINOR = "EditModeExpanded-1.0", 66
 local lib = LibStub:NewLibrary(MAJOR, MINOR)
 if not lib then return end
 
@@ -21,9 +21,11 @@ local ENUM_EDITMODEACTIONBARSETTING_HIDEABLE = 10 -- Enum.EditModeActionBarSetti
 local ENUM_EDITMODEACTIONBARSETTING_MINIMAPPINNED = 11
 local ENUM_EDITMODEACTIONBARSETTING_CUSTOM = 12
 local ENUM_EDITMODEACTIONBARSETTING_CLAMPED = 13
+local ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT = 14
 
 -- run OnLoad the first time RegisterFrame is called by an addon
-local f = {}
+local f = lib.internalOnLoadFrame or {}
+lib.internalOnLoadFrame = f
 function f.OnLoad() f.OnLoad = nil end
 
 -- some caching tables, save the state of frames just before entering Edit Mode
@@ -433,6 +435,11 @@ function lib:RepositionFrame(frame)
         return
     end
     
+    if db.settings and (db.settings[ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT] == 1) and InCombatLockdown() then
+        frame:Hide()
+        return
+    end
+    
     local x, y = getOffsetXY(frame, db.x or db.defaultX, db.y or db.defaultY)
     local anchorPoint = frame.EMEanchorPoint
     if not pcall( function() frame:SetPoint(anchorPoint, frame.EMEanchorTo, anchorPoint, x, y) end ) then
@@ -608,103 +615,100 @@ hooksecurefunc(f, "OnLoad", function()
         secureexecuterange(frames, clearSelectedSystem)
         EditModeExpandedSystemSettingsDialog:Hide()
     end
-end)
 
-hooksecurefunc(EditModeManagerFrame, "EnterEditMode", function(self)
-    -- can cause errors if the player is in combat - eg trying to move or show/hide protected frames
-    if InCombatLockdown() then return end
-    if not EditModeManagerExpandedFrame then return end -- happens if library is embedded but nothing has been registered
-    
-    if #frames <= 0 then EditModeManagerExpandedFrame:Hide() end
-    for _, frame in ipairs(frames) do
-        frame:SetHasActiveChanges(false)
-        frame:HighlightSystem();
-        wasVisible[frame.system] = frame:IsShown()
-        frame:SetShown(framesDB[frame.system].enabled)
-        local x, y = frame:GetSize()
-        if (not frame.EMEDontResize) and ((x < 40) or (y < 40)) then
-            originalSize[frame.system] = {["x"] = x, ["y"] = y}
-            if defaultSize[frame.system] then
-                frame:SetSize(defaultSize[frame.system].x, defaultSize[frame.system].y)
-            elseif (x < 40) and (y > 0) then
-                frame:SetSize(40, y)
-            elseif (x > 0) and (y < 40) then
-                frame:SetSize(x, 40)
-            else
-                frame:SetSize(40, 40)
-            end
-        end
-    end
-    
-    for frameName in pairs(existingFrames) do
-        local frame = _G[frameName]
-        local systemID = getSystemID(frame)
-        if framesDB[systemID] and framesDB[systemID].settings and (framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= nil) then
-            if (framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] == 1) then
-                frame:Show()
-            end
-        end
-    end
-end)
-
-hooksecurefunc(EditModeManagerFrame, "ExitEditMode", function()
-    if InCombatLockdown() then
-        print("EditModeExpanded Error: could not hide Edit Mode properly - you were in combat!")
-        return
-    end
-    if not EditModeManagerExpandedFrame then return end -- happens if library is embedded but nothing has been registered
-    
-    for _, frame in ipairs(frames) do
-        frame:ClearHighlight();
-        frame:StopMovingOrSizing();
+    hooksecurefunc(EditModeManagerFrame, "EnterEditMode", function(self)
+        -- can cause errors if the player is in combat - eg trying to move or show/hide protected frames
+        if InCombatLockdown() then return end
+        if not EditModeManagerExpandedFrame then return end -- happens if library is embedded but nothing has been registered
         
-        if framesDB[frame.system] and framesDB[frame.system].settings and (framesDB[frame.system].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= nil) then
-            if (framesDB[frame.system].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] == 1) then
-                frame:Hide()
+        if #frames <= 0 then EditModeManagerExpandedFrame:Hide() end
+        for _, frame in ipairs(frames) do
+            frame:SetHasActiveChanges(false)
+            frame:HighlightSystem();
+            wasVisible[frame.system] = frame:IsShown()
+            frame:SetShown(framesDB[frame.system].enabled)
+            local x, y = frame:GetSize()
+            if (not frame.EMEDontResize) and ((x < 40) or (y < 40)) then
+                originalSize[frame.system] = {["x"] = x, ["y"] = y}
+                if defaultSize[frame.system] then
+                    frame:SetSize(defaultSize[frame.system].x, defaultSize[frame.system].y)
+                elseif (x < 40) and (y > 0) then
+                    frame:SetSize(40, y)
+                elseif (x > 0) and (y < 40) then
+                    frame:SetSize(x, 40)
+                else
+                    frame:SetSize(40, 40)
+                end
+            end
+        end
+        
+        for frameName in pairs(existingFrames) do
+            local frame = _G[frameName]
+            local systemID = getSystemID(frame)
+            if framesDB[systemID] and framesDB[systemID].settings and (framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= nil) then
+                if (framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] == 1) then
+                    frame:Show()
+                end
+            end
+        end
+    end)
+
+    hooksecurefunc(EditModeManagerFrame, "ExitEditMode", function()
+        if InCombatLockdown() then
+            print("EditModeExpanded Error: could not hide Edit Mode properly - you were in combat!")
+            return
+        end
+        if not EditModeManagerExpandedFrame then return end -- happens if library is embedded but nothing has been registered
+        
+        for _, frame in ipairs(frames) do
+            frame:ClearHighlight();
+            frame:StopMovingOrSizing();
+            
+            if framesDB[frame.system] and framesDB[frame.system].settings and (framesDB[frame.system].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= nil) then
+                if (framesDB[frame.system].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] == 1) then
+                    frame:Hide()
+                else
+                    frame:SetShown(wasVisible[frame.system])
+                end
             else
                 frame:SetShown(wasVisible[frame.system])
             end
-        else
-            frame:SetShown(wasVisible[frame.system])
-        end
-        
-        if originalSize[frame.system] then
-            frame:SetSize(originalSize[frame.system].x, originalSize[frame.system].y)
-        end
-    end
-    
-    for frameName in pairs(existingFrames) do
-        local frame = _G[frameName]
-        local systemID = getSystemID(frame)
-        if framesDB[systemID] and framesDB[systemID].settings and (framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= nil) then
-            if (framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] == 1) then
-                frame:Hide()
+            
+            if originalSize[frame.system] then
+                frame:SetSize(originalSize[frame.system].x, originalSize[frame.system].y)
             end
         end
-    end
-    
-    wipe(wasVisible)
-    wipe(originalSize)
-    EditModeExpandedSystemSettingsDialog:Hide()
-end)
-
-hooksecurefunc(EditModeManagerFrame, "SelectSystem", function(self, systemFrame)
-    if EditModeExpandedSystemSettingsDialog and EditModeExpandedSystemSettingsDialog.attachedToSystem ~= systemFrame then
-        EditModeExpandedSystemSettingsDialog:Hide()
-    end
-    
-    for _, frame in ipairs(frames) do
-        if systemFrame ~= frame then
-            frame:HighlightSystem()
+        
+        for frameName in pairs(existingFrames) do
+            local frame = _G[frameName]
+            local systemID = getSystemID(frame)
+            if framesDB[systemID] and framesDB[systemID].settings and (framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= nil) then
+                if (framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] == 1) then
+                    frame:Hide()
+                end
+            end
         end
-    end
-end)
+        
+        wipe(wasVisible)
+        wipe(originalSize)
+        EditModeExpandedSystemSettingsDialog:Hide()
+    end)
 
---
--- Edit Mode Dialog Box code
---
+    hooksecurefunc(EditModeManagerFrame, "SelectSystem", function(self, systemFrame)
+        if EditModeExpandedSystemSettingsDialog and EditModeExpandedSystemSettingsDialog.attachedToSystem ~= systemFrame then
+            EditModeExpandedSystemSettingsDialog:Hide()
+        end
+        
+        for _, frame in ipairs(frames) do
+            if systemFrame ~= frame then
+                frame:HighlightSystem()
+            end
+        end
+    end)
 
-hooksecurefunc(f, "OnLoad", function()
+    --
+    -- Edit Mode Dialog Box code
+    --
     local frame = CreateFrame("Frame", nil, UIParent, "ResizeLayoutFrame")
     EditModeExpandedSystemSettingsDialog = frame
     Mixin(frame, EditModeSystemSettingsDialogMixin)
@@ -893,6 +897,19 @@ hooksecurefunc(f, "OnLoad", function()
                             end)
                         end
                         
+                        if displayInfo.setting == ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT then
+                            savedValue = framesDB[systemID].settings[displayInfo.setting]
+                            if savedValue == nil then savedValue = 0 end
+                            settingFrame.Button:SetChecked(savedValue)
+                            settingFrame.Button:SetScript("OnClick", function()
+                                if settingFrame.Button:GetChecked() then
+                                    framesDB[systemID].settings[displayInfo.setting] = 1
+                                else
+                                    framesDB[systemID].settings[displayInfo.setting] = 0
+                                end
+                            end)
+                        end
+                        
                           settingsToSetup[settingFrame] = { displayInfo = updatedDisplayInfo, currentValue = savedValue, settingName = settingName }
                           settingFrame:Show();
                       end
@@ -995,111 +1012,123 @@ end)
 -- Profile handling
 --
 do
-    local f = CreateFrame("Frame")
-    f:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
-    f:SetScript("OnEvent", function()
+    local lf = CreateFrame("Frame")
+    hooksecurefunc(f, "OnLoad", function()
+        lf:RegisterEvent("EDIT_MODE_LAYOUTS_UPDATED")
+    end)
+    lf:SetScript("OnEvent", function()
         profilesInitialised = true
         
-        for _, frame in pairs(frames) do
-            EditModeExpandedSystemSettingsDialog:Hide()
-            local db = baseFramesDB[frame.system]
-            
-            -- if currently selected Edit Mode profile does not exist in the db, try importing a legacy db instead
-            local layoutInfo = EditModeManagerFrame:GetActiveLayoutInfo()
-            local profileName = layoutInfo.layoutType.."-"..layoutInfo.layoutName
-            if layoutInfo.layoutType == Enum.EditModeLayoutType.Character then
-                local unitName, unitRealm = UnitFullName("player")
-                profileName = layoutInfo.layoutType.."-"..unitName.."-"..unitRealm.."-"..layoutInfo.layoutName
-            end
-            
-            if not db.profiles then db.profiles = {} end
-            if not db.profiles[profileName] then
-                db.profiles[profileName] = {}
-                db.profiles[profileName].x = db.x
-                db.profiles[profileName].y = db.y
-                if frame.EMEdisabledByDefault then
-                    db.profiles[profileName].enabled = false
-                else
-                    db.profiles[profileName].enabled = db.enabled
+        for _, frames in pairs({frames, existingFrames}) do
+            for name, frame in pairs(frames) do
+                if type(frame) == "boolean" then
+                    frame = _G[name]
                 end
-                db.profiles[profileName].settings = db.settings
-                db.profiles[profileName].defaultX = db.defaultX
-                db.profiles[profileName].defaultY = db.defaultY
+                EditModeExpandedSystemSettingsDialog:Hide()
+                local systemID = frame.EMESystemID or frame.system
+                local db = baseFramesDB[systemID]
                 
-                db.x = nil
-                db.y = nil
-                db.enabled = nil
-                db.settings = nil
-                db.clamped = nil
-            end
-            
-            if db.minimap then
-                db.profiles[profileName].minimap = db.minimap
-                db.minimap = nil
-            end
-            
-            db = db.profiles[profileName]
-            framesDB[frame.system] = db
-
-            -- update scale
-            if db.settings and db.settings[Enum.EditModeUnitFrameSetting.FrameSize] then
-                frame:SetScaleOverride(db.settings[Enum.EditModeUnitFrameSetting.FrameSize]/100)
-            end
-            
-            -- update position
-            frame:ClearAllPoints()
-            local anchorPoint = frame.EMEanchorPoint
-            if db.x and db.y then
-                local x, y = getOffsetXY(frame, db.x, db.y)
-                frame:SetPoint(anchorPoint, frame.EMEanchorTo, anchorPoint, x, y)
-            else
-                if db.defaultX and db.defaultY then
-                    local x, y = getOffsetXY(frame, db.defaultX, db.defaultY)
-                    if not pcall( function() frame:SetPoint(anchorPoint, frame.EMEanchorTo, anchorPoint, x, y) end ) then
-                        frame:SetPoint(anchorPoint, nil, anchorPoint, x, y)
-                    end
+                -- if currently selected Edit Mode profile does not exist in the db, try importing a legacy db instead
+                local layoutInfo = EditModeManagerFrame:GetActiveLayoutInfo()
+                local profileName = layoutInfo.layoutType.."-"..layoutInfo.layoutName
+                if layoutInfo.layoutType == Enum.EditModeLayoutType.Character then
+                    local unitName, unitRealm = UnitFullName("player")
+                    profileName = layoutInfo.layoutType.."-"..unitName.."-"..unitRealm.."-"..layoutInfo.layoutName
                 end
-            end
-            
-            -- the option in the expanded frame
-            if frame.EMEdisabledByDefault then
-                db.enabled = false
-            end
-            if db.enabled == nil then
-                db.enabled = true
-            end
-            frame.EMECheckButtonFrame:SetChecked(db.enabled)
-            
-            -- frame hide option
-            if db.settings and (db.settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= nil) then
-                frame:SetShown(framesDB[frame.system].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= 1)
-            end
-            
-            -- minimap pinning
-            if framesDialogsKeys[frame.system] and framesDialogsKeys[frame.system][ENUM_EDITMODEACTIONBARSETTING_MINIMAPPINNED] then
-                if db.settings and (db.settings[ENUM_EDITMODEACTIONBARSETTING_MINIMAPPINNED] ~= nil) then
-                    if db.settings[ENUM_EDITMODEACTIONBARSETTING_MINIMAPPINNED] == 1 then
-                        pinToMinimap(frame)
+                
+                if not db.profiles then db.profiles = {} end
+                if not db.profiles[profileName] then
+                    db.profiles[profileName] = {}
+                    db.profiles[profileName].x = db.x
+                    db.profiles[profileName].y = db.y
+                    if frame.EMEdisabledByDefault then
+                        db.profiles[profileName].enabled = false
                     else
-                        unpinFromMinimap(frame)
+                        db.profiles[profileName].enabled = db.enabled
                     end
+                    db.profiles[profileName].settings = db.settings
+                    db.profiles[profileName].defaultX = db.defaultX
+                    db.profiles[profileName].defaultY = db.defaultY
+                    
+                    db.x = nil
+                    db.y = nil
+                    db.enabled = nil
+                    db.settings = nil
+                    db.clamped = nil
+                end
+                
+                if db.minimap then
+                    db.profiles[profileName].minimap = db.minimap
+                    db.minimap = nil
+                end
+                
+                db = db.profiles[profileName]
+                framesDB[systemID] = db
+                
+                -- frame hide option
+                if db.settings and (db.settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= nil) then
+                    frame:SetShown(framesDB[systemID].settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] ~= 1)
+                end
+                
+                if not frame.EMESystemID then
+                    
+                    -- update scale
+                    if db.settings and db.settings[Enum.EditModeUnitFrameSetting.FrameSize] then
+                        frame:SetScaleOverride(db.settings[Enum.EditModeUnitFrameSetting.FrameSize]/100)
+                    end
+                    
+                    -- update position
+                    frame:ClearAllPoints()
+                    local anchorPoint = frame.EMEanchorPoint
+                    if db.x and db.y then
+                        local x, y = getOffsetXY(frame, db.x, db.y)
+                        frame:SetPoint(anchorPoint, frame.EMEanchorTo, anchorPoint, x, y)
+                    else
+                        if db.defaultX and db.defaultY then
+                            local x, y = getOffsetXY(frame, db.defaultX, db.defaultY)
+                            if not pcall( function() frame:SetPoint(anchorPoint, frame.EMEanchorTo, anchorPoint, x, y) end ) then
+                                frame:SetPoint(anchorPoint, nil, anchorPoint, x, y)
+                            end
+                        end
+                    end
+                
+                    -- minimap pinning
+                    if framesDialogsKeys[systemID] and framesDialogsKeys[systemID][ENUM_EDITMODEACTIONBARSETTING_MINIMAPPINNED] then
+                        if db.settings and (db.settings[ENUM_EDITMODEACTIONBARSETTING_MINIMAPPINNED] ~= nil) then
+                            if db.settings[ENUM_EDITMODEACTIONBARSETTING_MINIMAPPINNED] == 1 then
+                                pinToMinimap(frame)
+                            else
+                                unpinFromMinimap(frame)
+                            end
+                        end
+                    end
+                    
+                    -- the option in the expanded frame
+                    if frame.EMEdisabledByDefault then
+                        db.enabled = false
+                    end
+                    if db.enabled == nil then
+                        db.enabled = true
+                    end
+                    frame.EMECheckButtonFrame:SetChecked(db.enabled)
+                    
+                    -- only way I can find to un-select frames
+                    if EditModeManagerFrame.editModeActive and frame:IsShown() then
+                        frame:HighlightSystem()
+                    end
+                    
+                    if db.clamped == 1 then
+                        frame:SetClampedToScreen(true)
+                    else
+                        frame:SetClampedToScreen(false)
+                    end
+                
                 end
             end
             
-            -- only way I can find to un-select frames
-            if EditModeManagerFrame.editModeActive and frame:IsShown() then
-                frame:HighlightSystem()
+            for _, func in pairs(customCheckboxCallDuringProfileInit) do
+                func()
             end
-            
-            if db.clamped == 1 then
-                frame:SetClampedToScreen(true)
-            else
-                frame:SetClampedToScreen(false)
-            end
-        end
-        
-        for _, func in pairs(customCheckboxCallDuringProfileInit) do
-            func()
         end
     end)
 end
@@ -1338,4 +1367,75 @@ function lib:HideByDefault(frame)
     db.enabled = false
     frame.EMEdisabledByDefault = true
     frame.EMECheckButtonFrame:SetChecked(false)
+end
+
+-- Adds an option to hide the frame during combat
+-- Frame must be already have had :RegisterHideable called on it for this to work
+function lib:RegisterToggleInCombat(frame)
+    local systemID = getSystemID(frame)
+    
+    if not framesDialogs[systemID] then framesDialogs[systemID] = {} end
+    if framesDialogsKeys[systemID] and framesDialogsKeys[systemID][ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT] then return end
+    if not framesDialogsKeys[systemID] then framesDialogsKeys[systemID] = {} end
+    framesDialogsKeys[systemID][ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT] = true
+    table.insert(framesDialogs[systemID],
+        {
+            setting = ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT,
+            name = "Toggle Visibility in Combat",
+            type = Enum.EditModeSettingDisplayType.Checkbox,
+    })
+end
+
+do
+    local lf = CreateFrame("Frame")
+    hooksecurefunc(f, "OnLoad", function()
+        lf:RegisterEvent("PLAYER_REGEN_DISABLED")
+        lf:RegisterEvent("PLAYER_REGEN_ENABLED")
+    end)
+    lf:SetScript("OnEvent", function(self, event, ...)
+        if event == "PLAYER_REGEN_DISABLED" then
+            -- entering combat
+            for _, frames in pairs({frames, existingFrames}) do
+                for name, frame in pairs(frames) do
+                    if type(frame) == "boolean" then
+                        frame = _G[name]
+                    end
+                    local systemID = getSystemID(frame)
+                    local db = framesDB[systemID]
+                    local settings = db.settings
+                    local dialogs = framesDialogsKeys[systemID]
+                    
+                    if dialogs and dialogs[ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT] and settings and (settings[ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT] == 1) and dialogs[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] then
+                        if settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] == 1 then
+                            -- if "Hide" in enabled and this option too, then hide it while out of combat, show it while in combat
+                            frame:Show()
+                        else
+                            frame:Hide()
+                        end
+                    end
+                end
+            end
+        elseif event == "PLAYER_REGEN_ENABLED" then
+            -- exiting combat
+            for _, frames in pairs({frames, existingFrames}) do
+                for name, frame in pairs(frames) do
+                    if type(frame) == "boolean" then
+                        frame = _G[name]
+                    end
+                    local systemID = getSystemID(frame)
+                    local db = framesDB[systemID]
+                    local settings = db.settings
+                    local dialogs = framesDialogsKeys[systemID]
+                    
+                    if dialogs and settings and dialogs[ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT] and (settings[ENUM_EDITMODEACTIONBARSETTING_HIDDENINCOMBAT] == 1) and dialogs[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] then
+                        if settings[ENUM_EDITMODEACTIONBARSETTING_HIDEABLE] == 1 then
+                            frame:Hide()
+                        else
+                            frame:Show()
+                        end
+                    end
+                end
+            end
+        end
+    end)
 end
