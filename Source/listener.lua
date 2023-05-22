@@ -29,6 +29,7 @@ listener:SetScript("OnEvent", function(self, event, text, monsterName)
             libEME:RegisterResizable(WhereTheZaralekUI)
             libEME:HideByDefault(WhereTheZaralekUI)
             libEME:RegisterHideable(WhereTheZaralekUI)
+            libEME:RegisterToggleInCombat(WhereTheZaralekUI)
         end
     end
 end)
