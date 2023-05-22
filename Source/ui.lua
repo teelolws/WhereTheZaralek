@@ -55,3 +55,10 @@ function addon:UpdateSnailUI(text)
         frame.eventText:SetText((frame.eventText:GetText() or "").."\n"..text)
     end
 end
+
+WhereTheZaralekUI:HookScript("OnShow", function()
+    local mapID = C_Map.GetBestMapForUnit("player")
+    if mapID ~= 2133 then
+        WhereTheZaralekUI:Hide()
+    end
+end)
